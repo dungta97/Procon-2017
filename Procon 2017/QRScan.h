@@ -1,5 +1,4 @@
-﻿#ifndef _QRSCAN_H
-#define _QRSCAN_H
+﻿#pragma once
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -62,5 +61,5 @@ vector<String> ScanQR(VideoCapture& cap) {
 	if (res.size() == 0) res.push_back("");
 	return res;
 }
-#endif // !_QRSCAN_H
+
 
