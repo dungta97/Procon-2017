@@ -1,5 +1,4 @@
-﻿#ifndef _QRSCAN_H
-#define _QRSCAN_H
+﻿#pragma	once
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -39,7 +38,8 @@ vector<String> ScanQR(VideoCapture& cap) {
 					break;
 				}
 			}
-			if(chuaxuathien) res.push_back(symbolData);
+			if (chuaxuathien) { cout << symbolData; res.push_back(symbolData);
+			}
 			vector<Point> vp;
 			int n = symbol->get_location_size();
 			for (int i = 0; i<n; i++) {
@@ -51,15 +51,12 @@ vector<String> ScanQR(VideoCapture& cap) {
 			for (int i = 0; i<4; i++) {
 				line(frame, pts[i], pts[(i + 1) % 4], Scalar(255, 0, 0), 3);
 			}
-			cout << "Angle: " << r.angle << endl;
 		}
 		imshow("imgout.jpg", frame);
 		image.set_data(NULL, 0);
 	} while (waitKey(1) != 13);
 	cout << res.size();
-	getchar();
 	if (res.size() == 0) res.push_back("");
 	return res;
 }
-#endif // !_QRSCAN_H
 
