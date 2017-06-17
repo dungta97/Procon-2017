@@ -14,4 +14,5 @@ VideoCapture cap;
 int main(void) {
 	cap.open("video.mp4");
 	resQR=ScanQR(cap);
+	cout << resQR.at(0);
 }
