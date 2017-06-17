@@ -1,11 +1,9 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <math.h>
-#include <algorithm>
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"  
+#include <algorithm> 
 #include "QRScan.h"
+#include "Piece.h"
 using namespace std;
 using namespace cv;
 
