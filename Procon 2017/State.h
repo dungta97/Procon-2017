@@ -7,4 +7,8 @@ class State
 public:
 	vector<Piece> pieces;
 	void push(Piece &piece);
+	State(int N)
+	{
+		pieces = vector<Piece>(N);
+	}
 };

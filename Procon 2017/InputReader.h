@@ -42,20 +42,18 @@ State readInput(char* fileName)
 	string s;
 	getline(inp, s);
 	InputReader::getInputString(s);
-	State res;
 	int N = InputReader::read();
+	State res(N + 1);
 	for (int I = 0; I < N + 1; I++)
 	{
-		Piece p;
 		int n = InputReader::read();
 		for (int i = 0; i < n; i++)
 		{
 			int x, y;
 			x = InputReader::read();
 			y = InputReader::read();
-			p.push(x, y);
+			res.pieces[I].push(x, y);
 		}
-		res.push(p);
 	}
 	return res;
 }
