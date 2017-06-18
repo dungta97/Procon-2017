@@ -13,4 +13,6 @@ public:
 	Piece();
 	
 	void push(int x, int y);
+
+	void compute_angles();
 };

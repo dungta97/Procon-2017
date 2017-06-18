@@ -10,3 +10,13 @@ void Piece::push(int x, int y)
 {
 	vertices.push_back(Vertex(x, y, this, (int)vertices.size()));
 }
+
+void Piece::compute_angles()
+{
+	for (int i = 0; i < vertices.size(); i++)
+	{
+		int before = int((i - 1 + vertices.size()) / vertices.size());
+		int after = int((i + 1) / vertices.size());
+		vertices[i].compute_angle(vertices[before], vertices[after]);
+	}
+}

@@ -45,6 +45,7 @@ State readInput(char* fileName)
 			y = InputReader::read();
 			res.pieces[I].push(x, y);
 		}
+		res.pieces[I].compute_angles();
 	}
 	return res;
 }
