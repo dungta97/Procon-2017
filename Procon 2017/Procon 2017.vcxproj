@@ -115,11 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Geometric.cpp" />
+    <ClCompile Include="InputReader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Piece.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="geometric.h" />
+    <ClInclude Include="Geometric.h" />
     <ClInclude Include="InputReader.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="QRScan.h" />

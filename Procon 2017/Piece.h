@@ -1,10 +1,6 @@
 #pragma once
 #include <vector>
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
 #include "Vertex.h"
-using namespace cv;
 using namespace std;
 
 class Piece
@@ -14,14 +10,7 @@ public:
 	bool exist;
 	Piece *child_1, *child_2;
 
-	Piece() 
-	{
-		this->exist = true;
-		child_1 = child_2 = nullptr;
-	}
+	Piece();
 	
-	void push(int x, int y)
-	{
-		vertices.push_back(Vertex(x, y, this, (int)vertices.size()));
-	}
+	void push(int x, int y);
 };
