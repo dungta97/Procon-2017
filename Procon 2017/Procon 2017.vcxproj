@@ -124,6 +124,7 @@
     <ClInclude Include="Piece.h" />
     <ClInclude Include="QRScan.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />

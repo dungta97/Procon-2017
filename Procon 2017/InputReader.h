@@ -53,7 +53,7 @@ State readInput(char* fileName)
 			int x, y;
 			x = InputReader::read();
 			y = InputReader::read();
-			p.vertex.push_back(Point(x, y));
+			p.push(x, y);
 		}
 		res.push(p);
 	}

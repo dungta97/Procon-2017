@@ -9,11 +9,11 @@ using namespace std;
 
 int main(void) {
 	State initial = readInput("input.txt");
-	for each (Piece p in initial.pieces)
+	for each (Piece piece in initial.pieces)
 	{
-		for each (Point v in p.vertex)
+		for each (Vertex vertex in piece.vertexs)
 		{
-			cout << v.x << " " << v.y << endl;
+			cout << vertex.x << " " << vertex.y << endl;
 		}
 		cout << endl;
 	}
