@@ -8,6 +8,14 @@
 using namespace std;
 
 int main(void) {
-	readInput("input.txt");
+	State initial = readInput("input.txt");
+	for each (Piece p in initial.pieces)
+	{
+		for each (Point v in p.vertex)
+		{
+			cout << v.x << " " << v.y << endl;
+		}
+		cout << endl;
+	}
 	while (1);
 }
