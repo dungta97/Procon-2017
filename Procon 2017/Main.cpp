@@ -1,15 +1,13 @@
 ﻿#include <iostream>
 #include <fstream>
-#include <math.h>
-#include <algorithm> 
+#include "geometric.h"
 #include "QRScan.h"
 #include "Piece.h"
+#include "State.h"
+#include "InputReader.h"
 using namespace std;
-using namespace cv;
 
-vector<String> resQR; //kết quả quét qrcode;
-VideoCapture cap;
 int main(void) {
-	cap.open("video.mp4");
-	resQR=ScanQR(cap);
+	readInput("input.txt");
+	while (1);
 }
