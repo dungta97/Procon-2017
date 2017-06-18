@@ -27,6 +27,16 @@ int InputReader::read()
 	return res;
 }
 
+void reverse(vector<Vertex> &vertices)
+{
+	vector<Vertex> rev;
+	for (int i = vertices.size() - 1; i >= 0; i--)
+	{
+		rev.push_back(vertices[i]);
+	}
+	vertices = rev;
+}
+
 State readInput(char* fileName)
 {
 	ifstream inp(fileName);
@@ -45,6 +55,7 @@ State readInput(char* fileName)
 			y = InputReader::read();
 			res.pieces[I].push(x, y);
 		}
+		if (I == N) reverse(res.pieces[I].vertices);	// Reverse the frame's vertices
 		res.pieces[I].compute_angles();
 	}
 	return res;

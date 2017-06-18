@@ -9,9 +9,9 @@ int main(void) {
 	{
 		for each (Vertex vertex in piece.vertices)
 		{
-			cout << vertex.x << " " << vertex.y << " " << vertex.angle << endl;
+			cout << vertex.x << " " << vertex.y  << endl;
 		}
 		cout << endl;
 	}
-	while (1);
+	getchar();
 }
