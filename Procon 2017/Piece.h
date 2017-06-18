@@ -9,15 +9,13 @@ using namespace std;
 class Piece
 {
 public:
-	int id;
 	vector<Point> vertex;
 	bool exist;
-	int id_child_1, id_child_2;
+	Piece *child_1, *child_2;
 
 	Piece() 
 	{
 		this->exist = true;
-		id_child_1 = id_child_2 = -1;
+		child_1 = child_2 = nullptr;
 	}
 };
-
