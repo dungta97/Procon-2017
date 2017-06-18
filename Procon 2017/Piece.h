@@ -10,7 +10,7 @@ using namespace std;
 class Piece
 {
 public:
-	vector<Vertex> vertexs;
+	vector<Vertex> vertices;
 	bool exist;
 	Piece *child_1, *child_2;
 
@@ -22,6 +22,6 @@ public:
 	
 	void push(int x, int y)
 	{
-		vertexs.push_back(Vertex(x, y, this, (int)vertexs.size()));
+		vertices.push_back(Vertex(x, y, this, (int)vertices.size()));
 	}
 };
