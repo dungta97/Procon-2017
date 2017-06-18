@@ -7,6 +7,15 @@
 using namespace std;
 using namespace cv;
 using namespace zbar;
+class tung {
+private:
+	int sbd;
+	string ten;
+public:
+	bool sosanh() {
+
+	}
+};
 vector<String> ScanQR(VideoCapture& cap) {
 	vector<String> res = vector<String>();
 	ImageScanner scanner;
@@ -15,6 +24,7 @@ vector<String> ScanQR(VideoCapture& cap) {
 	int height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 	Mat frame,grayFrame;
 	//frame = imread("test.jpg", 1);
+	
 	do {
 		cap >> frame;
 		//frame = imread("test.jpg", 1);
@@ -39,9 +49,9 @@ vector<String> ScanQR(VideoCapture& cap) {
 				}
 			}
 			if (chuaxuathien) {
-				cout << symbolData; 
+				cout <<"QR code:"<< symbolData <<endl; 
 				res.push_back(symbolData);
-			}
+					}
 			vector<Point> vp;
 			int n = symbol->get_location_size();
 			for (int i = 0; i<n; i++) {
@@ -54,10 +64,10 @@ vector<String> ScanQR(VideoCapture& cap) {
 				line(frame, pts[i], pts[(i + 1) % 4], Scalar(255, 0, 0), 3);
 			}
 		}
-		imshow("imgout.jpg", frame);
+		putText(frame, to_string(res.size()) + " QR has been added!!", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0));
+		imshow("Display", frame);
 		image.set_data(NULL, 0);
 	} while (waitKey(1) != 13);
-	cout << res.size();
 	if (res.size() == 0) res.push_back("");
 	return res;
 }

@@ -12,7 +12,8 @@ using namespace cv;
 vector<String> resQR; //kết quả quét qrcode;
 VideoCapture cap;
 int main(void) {
-	cap.open("video.mp4");
+	cap.open("http://192.168.1.118:8080/video?x.mjpeg");
+	if (!cap.isOpened()) return 0;
 	resQR=ScanQR(cap);
-	cout << resQR.at(0);
+	
 }
