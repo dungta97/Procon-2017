@@ -11,8 +11,8 @@ vector<String> ScanQR(VideoCapture& cap) {
 	vector<String> res = vector<String>();
 	ImageScanner scanner;
 	scanner.set_config(ZBAR_NONE, ZBAR_CFG_ENABLE, 1);
-	int width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
-	int height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+	int width = (int)cap.get(CV_CAP_PROP_FRAME_WIDTH);
+	int height = (int)cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 	Mat frame,grayFrame;
 	//frame = imread("test.jpg", 1);
 	do {
