@@ -1,4 +1,5 @@
-﻿#pragma once
+#pragma once
+
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -20,8 +21,8 @@ vector<String> ScanQR(VideoCapture& cap) {
 	vector<String> res = vector<String>();
 	ImageScanner scanner;
 	scanner.set_config(ZBAR_NONE, ZBAR_CFG_ENABLE, 1);
-	int width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
-	int height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+	int width = (int)cap.get(CV_CAP_PROP_FRAME_WIDTH);
+	int height = (int)cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 	Mat frame,grayFrame;
 	//frame = imread("test.jpg", 1);
 	
@@ -52,6 +53,7 @@ vector<String> ScanQR(VideoCapture& cap) {
 				cout <<"QR code:"<< symbolData <<endl; 
 				res.push_back(symbolData);
 					}
+
 			vector<Point> vp;
 			int n = symbol->get_location_size();
 			for (int i = 0; i<n; i++) {
@@ -68,8 +70,10 @@ vector<String> ScanQR(VideoCapture& cap) {
 		imshow("Display", frame);
 		image.set_data(NULL, 0);
 	} while (waitKey(1) != 13);
+
 	if (res.size() == 0) res.push_back("");
 	return res;
 }
+
 
 
