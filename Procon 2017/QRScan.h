@@ -8,15 +8,6 @@
 using namespace std;
 using namespace cv;
 using namespace zbar;
-class tung {
-private:
-	int sbd;
-	string ten;
-public:
-	bool sosanh() {
-
-	}
-};
 vector<String> ScanQR(VideoCapture& cap) {
 	vector<String> res = vector<String>();
 	ImageScanner scanner;
