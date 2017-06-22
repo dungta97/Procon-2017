@@ -9,7 +9,7 @@ int main(void) {
 	{
 		for each (Vertex vertex in piece.vertices)
 		{
-			cout << vertex.x << " " << vertex.y  << endl;
+			cout << vertex.point.x << " " << vertex.point.y  << endl;
 		}
 		cout << endl;
 	}

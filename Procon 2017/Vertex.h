@@ -1,13 +1,14 @@
 #pragma once
+#include "Geometric.h"
 
 class Piece;
 class Vertex
 {
 public:
-	int x, y;
+	geometric::Point point;
 	Piece *parent;
 	int id;
 	double angle;
-	Vertex(int x, int y, Piece *parent, int id);
+	Vertex(const geometric::Point& point, Piece *parent, int id);
 	void compute_angle(const Vertex &before, const Vertex &after);
 };

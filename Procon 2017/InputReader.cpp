@@ -30,7 +30,7 @@ int InputReader::read()
 void reverse(vector<Vertex> &vertices)
 {
 	vector<Vertex> rev;
-	for (int i = vertices.size() - 1; i >= 0; i--)
+	for (int i = int(vertices.size()) - 1; i >= 0; i--)
 	{
 		rev.push_back(vertices[i]);
 	}

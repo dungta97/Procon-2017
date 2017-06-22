@@ -8,7 +8,7 @@ Piece::Piece()
 
 void Piece::push(int x, int y)
 {
-	vertices.push_back(Vertex(x, y, this, (int)vertices.size()));
+	vertices.push_back(Vertex(geometric::Point(x, y), this, (int)vertices.size()));
 }
 
 void Piece::compute_angles()
