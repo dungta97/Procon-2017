@@ -9,7 +9,9 @@ namespace geometric
 		Point(int x = 0, int y = 0);
 		Point operator+(const Point&);
 		Point operator-(const Point&);
+		int operator*(const Point&);
+		double length();
 	};
 
-	double compute_angle(const Point& A, const Point& O, const Point& B);
+	double compute_angle(Point A, Point O, Point B);
 }

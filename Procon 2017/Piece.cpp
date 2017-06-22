@@ -15,8 +15,8 @@ void Piece::compute_angles()
 {
 	for (int i = 0; i < vertices.size(); i++)
 	{
-		int before = int((i - 1 + vertices.size()) / vertices.size());
-		int after = int((i + 1) / vertices.size());
+		int before = int((i - 1 + vertices.size()) % vertices.size());
+		int after = int((i + 1) % vertices.size());
 		vertices[i].compute_angle(vertices[before], vertices[after]);
 	}
 }
