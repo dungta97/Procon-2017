@@ -19,7 +19,7 @@ int geometric::Point::operator*(const Point& other)
 
 double geometric::Point::length()
 {
-	return sqrt(x*x + y*y);
+	return sqrt(x * x + y * y);
 }
 
 geometric::Point::Point(int x, int y)
