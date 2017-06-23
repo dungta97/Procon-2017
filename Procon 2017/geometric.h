@@ -13,5 +13,6 @@ namespace geometric
 		double length();
 	};
 
+	int orientation(const Point& A, const Point& O, const Point& B);
 	double compute_angle(Point A, Point O, Point B);
 }

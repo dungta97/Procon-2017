@@ -28,6 +28,12 @@ geometric::Point::Point(int x, int y)
 	this->y = y;
 }
 
+int geometric::orientation(const geometric::Point& A, const geometric::Point& O, const geometric::Point& B)
+{
+	// result: < 0 if clockwise, > 0 if counter clockwise, == 0 if collinear.
+	return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+}
+
 double geometric::compute_angle(geometric::Point A, geometric::Point O, geometric::Point B)
 {
 	geometric::Point vOA = A - O;
@@ -37,7 +43,7 @@ double geometric::compute_angle(geometric::Point A, geometric::Point O, geometri
 	double res = acos((vOA * vOB) / (dOA * dOB));
 	res = res * 360 / 2 / PI;
 
-	int c = (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+	int c = geometric::orientation(A, O, B);
 	if (c > 0) res = 360 - res;
 	return res;
 }
