@@ -9,4 +9,5 @@ public:
 	vector<Piece> pieces;
 	void push(Piece &piece);
 	State(int N);
+	vector<vPair>* get_vPairs();
 };

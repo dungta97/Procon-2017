@@ -19,5 +19,6 @@ public:
 	Vertex *a, *b;
 	int compatibility;
 	vPair(Vertex *a, Vertex *b);
+	Piece* merged_piece;
 	void get_compatibility();
 };

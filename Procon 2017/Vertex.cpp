@@ -1,5 +1,4 @@
 #include "Vertex.h"
-#include "Geometric.h"
 
 Vertex::Vertex(const geometric::Point& point, Piece *parent, int id)
 {
