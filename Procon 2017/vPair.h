@@ -7,4 +7,5 @@ public:
 	Vertex *a, *b;
 	int compatibility;
 	vPair(Vertex *a, Vertex *b);
+	void get_compatibility();
 };
