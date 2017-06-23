@@ -12,3 +12,12 @@ public:
 	Vertex(const geometric::Point& point, Piece *parent, int id);
 	void compute_angle(const Vertex &before, const Vertex &after);
 };
+
+class vPair
+{
+public:
+	Vertex *a, *b;
+	int compatibility;
+	vPair(Vertex *a, Vertex *b);
+	void get_compatibility();
+};

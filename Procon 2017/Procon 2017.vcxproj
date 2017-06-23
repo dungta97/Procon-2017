@@ -121,7 +121,6 @@
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Vertex.cpp" />
-    <ClCompile Include="vPair.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Geometric.h" />
@@ -130,7 +129,6 @@
     <ClInclude Include="QRScan.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Vertex.h" />
-    <ClInclude Include="vPair.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
