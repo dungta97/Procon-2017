@@ -15,4 +15,5 @@ namespace geometric
 
 	int orientation(const Point& A, const Point& O, const Point& B);
 	double compute_angle(Point A, Point O, Point B);
+	bool onSegment(Point p, Point q, Point r);
 }

@@ -1,13 +1,15 @@
 #include "Geometric.h"
 #include <math.h>
+#include <algorithm>
 #define PI 3.14159265358979323846
+using namespace std;
 
-geometric::Point geometric::Point::operator+(const geometric::Point& other)
+geometric::Point geometric::Point::operator+(const Point& other)
 {
 	return geometric::Point(this->x + other.x, this->y + other.y);
 }
 
-geometric::Point geometric::Point::operator-(const geometric::Point& other)
+geometric::Point geometric::Point::operator-(const Point& other)
 {
 	return geometric::Point(this->x - other.x, this->y - other.y);
 }
@@ -28,13 +30,13 @@ geometric::Point::Point(int x, int y)
 	this->y = y;
 }
 
-int geometric::orientation(const geometric::Point& A, const geometric::Point& O, const geometric::Point& B)
+int geometric::orientation(const Point& A, const Point& O, const Point& B)
 {
 	// result: < 0 if clockwise, > 0 if counter clockwise, == 0 if collinear.
 	return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
 }
 
-double geometric::compute_angle(geometric::Point A, geometric::Point O, geometric::Point B)
+double geometric::compute_angle(Point A, Point O, Point B)
 {
 	geometric::Point vOA = A - O;
 	geometric::Point vOB = B - O;
@@ -46,4 +48,14 @@ double geometric::compute_angle(geometric::Point A, geometric::Point O, geometri
 	int c = geometric::orientation(A, O, B);
 	if (c > 0) res = 360 - res;
 	return res;
+}
+
+bool geometric::onSegment(Point p, Point q, Point r)
+{
+	// return true if q lies on line segment pr
+	if (q.x <= max(p.x, r.x) && q.x >= min(p.x, r.x) &&
+		q.y <= max(p.y, r.y) && q.y >= min(p.y, r.y))
+		return true;
+
+	return false;
 }
