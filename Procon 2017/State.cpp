@@ -1,4 +1,6 @@
 #include "State.h"
+#include <iostream>
+using namespace std;
 
 void State::push(Piece &piece)
 {
@@ -10,18 +12,17 @@ State::State(int N)
 	pieces = vector<Piece>(N);
 }
 
-vector<vPair>* State::get_vPairs()
+void State::get_vPairs(vector<vPair>& res)
 {
-	vector<vPair> res;
+	res.clear();
 	for (int i = 0; i < pieces.size(); i++)
 		for (int j = i + 1; j < pieces.size(); j++)
 		{
-			for each (Vertex i_vertex in pieces[i].vertices)
-				for each (Vertex j_vertex in pieces[j].vertices)
+			for (int m = 0; m < pieces[i].vertices.size(); m ++)
+				for (int n = 0; n < pieces[j].vertices.size(); n++)
 				{
-					vPair tmp(&i_vertex, &j_vertex);
+					vPair tmp(&(pieces[i].vertices[m]), &(pieces[j].vertices[n]));
 					res.push_back(tmp);
 				}
 		}
-	return &res;
 }
