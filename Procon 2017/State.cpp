@@ -12,12 +12,6 @@ State::State(int N)
 	pieces = vector<Piece>(N);
 }
 
-void compute_vpair(vPair& vpair)
-{
-	Piece& a = *(vpair.a->parent);
-	Piece b = *(vpair.b->parent);
-}
-
 void State::get_vPairs(vector<vPair>& res)
 {
 	res.clear();
@@ -28,7 +22,6 @@ void State::get_vPairs(vector<vPair>& res)
 				for (int n = 0; n < pieces[j].vertices.size(); n++)
 				{
 					vPair tmp(&(pieces[i].vertices[m]), &(pieces[j].vertices[n]));
-					compute_vpair(tmp);
 					res.push_back(tmp);
 				}
 		}

@@ -20,3 +20,11 @@ void Piece::compute_angles()
 		vertices[i].compute_angle(vertices[before], vertices[after]);
 	}
 }
+
+void Piece::move(geometric::Point v)
+{
+	for each (Vertex vertex in vertices)
+	{
+		vertex.move(v);
+	}
+}

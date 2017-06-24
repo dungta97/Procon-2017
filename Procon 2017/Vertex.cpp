@@ -34,3 +34,8 @@ Vertex* Vertex::prev()
 {
 	return &(parent->vertices[(id - 1 + parent->vertices.size()) % parent->vertices.size()]);
 }
+
+void Vertex::move(geometric::Point v)
+{
+	point = point + v;
+}

@@ -13,6 +13,7 @@ public:
 	void compute_angle(const Vertex &before, const Vertex &after);
 	Vertex* next();
 	Vertex* prev();
+	void move(geometric::Point v);
 };
 
 class vPair
