@@ -1,4 +1,5 @@
 #include "Vertex.h"
+#include "Piece.h"
 
 Vertex::Vertex(const geometric::Point& point, Piece *parent, int id)
 {
@@ -22,4 +23,14 @@ vPair::vPair(Vertex * a, Vertex * b)
 void vPair::get_compatibility()
 {
 	compatibility = 0;
+}
+
+Vertex* Vertex::next()
+{
+	return &(parent->vertices[(id + 1) % parent->vertices.size()]);
+}
+
+Vertex* Vertex::prev()
+{
+	return &(parent->vertices[(id - 1 + parent->vertices.size()) % parent->vertices.size()]);
 }
