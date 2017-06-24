@@ -23,8 +23,8 @@ void Piece::compute_angles()
 
 void Piece::move(geometric::Point v)
 {
-	for each (Vertex vertex in vertices)
+	for (int i = 0; i < vertices.size(); i++)
 	{
-		vertex.move(v);
+		vertices[i].move(v);
 	}
 }

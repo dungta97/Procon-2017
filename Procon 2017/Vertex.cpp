@@ -22,7 +22,9 @@ vPair::vPair(Vertex * a, Vertex * b)
 
 void vPair::get_compatibility()
 {
-	compatibility = 0;
+	Piece& a = *(this->a->parent);
+	Piece b = *(this->b->parent);
+	b.move(this->a->point - this->b->point);
 }
 
 Vertex* Vertex::next()
