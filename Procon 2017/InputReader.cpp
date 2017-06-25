@@ -33,7 +33,7 @@ void reverse(vector<Vertex> &vertices)
 	for (int i = int(vertices.size()) - 1; i >= 0; i--)
 	{
 		rev.push_back(vertices[i]);
-		rev.back().id = rev.size() - 1;
+		rev.back().id = int(rev.size()) - 1;
 	}
 	vertices = rev;
 }

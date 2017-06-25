@@ -28,3 +28,22 @@ void Piece::move(geometric::Point v)
 		vertices[i].move(v);
 	}
 }
+
+bool Piece::rotate(double angle, geometric::Point center)
+{
+	for (int i = 0; i < vertices.size(); i++)
+	{
+		if (!vertices[i].rotate(angle, center))
+			return false;
+	}
+	return true;
+}
+
+void Piece::print()
+{
+	for each (Vertex vertex in vertices)
+	{
+		vertex.print();
+		cout << endl;
+	}
+}

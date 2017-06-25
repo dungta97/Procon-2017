@@ -14,4 +14,6 @@ public:
 	void push(int x, int y);
 	void compute_angles();
 	void move(geometric::Point v);
+	bool rotate(double angle, geometric::Point center);
+	void print();
 };

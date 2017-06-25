@@ -14,6 +14,8 @@ public:
 	Vertex* next();
 	Vertex* prev();
 	void move(geometric::Point v);
+	bool rotate(double angle, geometric::Point center);
+	void print();
 };
 
 class vPair

@@ -22,9 +22,24 @@ vPair::vPair(Vertex * a, Vertex * b)
 
 void vPair::get_compatibility()
 {
-	Piece& a = *(this->a->parent);
-	Piece b = *(this->b->parent);
-	b.move(this->a->point - this->b->point);
+	compatibility = 0;
+	Piece tmp_piece = *(this->b->parent);
+	for (int i = 0; i < tmp_piece.vertices.size(); i++)
+	{
+		tmp_piece.vertices[i].parent = &tmp_piece;
+	}
+	Vertex *b = &tmp_piece.vertices[this->b->id];
+	tmp_piece.move(this->a->point - this->b->point);
+
+	geometric::Point
+		A = this->a->next()->point,
+		O = this->a->point,
+		B = b->prev()->point;
+	if (!b->parent->rotate(geometric::compute_angle(A, O, B), O))
+	{
+		compatibility = -1;
+		return;
+	}
 }
 
 Vertex* Vertex::next()
@@ -40,4 +55,14 @@ Vertex* Vertex::prev()
 void Vertex::move(geometric::Point v)
 {
 	point = point + v;
+}
+
+bool Vertex::rotate(double angle, geometric::Point center)
+{
+	return point.rotate(angle, center);
+}
+
+void Vertex::print()
+{
+	point.print();
 }
