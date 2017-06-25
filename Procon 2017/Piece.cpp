@@ -47,3 +47,12 @@ void Piece::print()
 		cout << endl;
 	}
 }
+
+void Piece::clone(Piece &newpiece)
+{
+	newpiece = *this;
+	for (int i = 0; i < newpiece.vertices.size(); i++)
+	{
+		newpiece.vertices[i].parent = &newpiece;
+	}
+}
