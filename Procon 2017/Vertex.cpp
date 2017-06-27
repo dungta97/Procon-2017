@@ -20,23 +20,36 @@ vPair::vPair(Vertex * a, Vertex * b)
 	this->get_compatibility();
 }
 
+int try_get_cmp(Vertex& a, Vertex& _b, Vertex& a_)
+{
+	geometric::Point
+		A = a.point,
+		_B = _b.point,
+		A_ = a_.point;
+
+	if (!_b.parent->rotate(geometric::compute_angle(A_, A, _B), A))
+	{
+		return -1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 void vPair::get_compatibility()
 {
 	compatibility = 0;
-	Piece tmp_piece;
-	this->b->parent->clone(tmp_piece);
-	Vertex *b = &tmp_piece.vertices[this->b->id];
-	tmp_piece.move(this->a->point - this->b->point);
+	Piece tmp_piece_a, tmp_piece_b;
+	this->a->parent->clone(tmp_piece_a);
+	this->b->parent->clone(tmp_piece_b);
 
-	geometric::Point
-		A = this->a->next()->point,
-		O = this->a->point,
-		B = b->prev()->point;
-	if (!b->parent->rotate(geometric::compute_angle(A, O, B), O))
-	{
-		compatibility = -1;
-		return;
-	}
+	Vertex *a = &tmp_piece_a.vertices[this->a->id];
+	Vertex *b = &tmp_piece_b.vertices[this->b->id];
+
+	tmp_piece_b.move(this->a->point - this->b->point);
+
+	compatibility = try_get_cmp(*a, *b->prev(), *a->next());
 }
 
 Vertex* Vertex::next()
