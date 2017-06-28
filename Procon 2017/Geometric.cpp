@@ -86,7 +86,7 @@ bool geometric::onSegment(Point p, Point q, Point r)
 	return false;
 }
 
-bool geometric::equal(double d, int i)
+bool geometric::equal(double d, double e)
 {
-	return abs(d - i) < 1e-6;
+	return abs(d - e) < 1e-6;
 }

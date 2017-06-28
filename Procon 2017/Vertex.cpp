@@ -23,11 +23,8 @@ vPair::vPair(Vertex * a, Vertex * b)
 void vPair::get_compatibility()
 {
 	compatibility = 0;
-	Piece tmp_piece = *(this->b->parent);
-	for (int i = 0; i < tmp_piece.vertices.size(); i++)
-	{
-		tmp_piece.vertices[i].parent = &tmp_piece;
-	}
+	Piece tmp_piece;
+	this->b->parent->clone(tmp_piece);
 	Vertex *b = &tmp_piece.vertices[this->b->id];
 	tmp_piece.move(this->a->point - this->b->point);
 

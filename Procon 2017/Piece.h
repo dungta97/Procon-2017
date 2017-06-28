@@ -16,4 +16,5 @@ public:
 	void move(geometric::Point v);
 	bool rotate(double angle, geometric::Point center);
 	void print();
+	void clone(Piece &newpiece);
 };
