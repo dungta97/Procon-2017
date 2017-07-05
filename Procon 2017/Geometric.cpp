@@ -73,6 +73,7 @@ double geometric::compute_angle(Point A, Point O, Point B)
 
 	int c = geometric::orientation(A, O, B);
 	if (c > 0) res = 2 * PI - res;
+	res = res * 180 / PI;
 	return res;
 }
 
