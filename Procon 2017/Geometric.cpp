@@ -1,4 +1,7 @@
 #include "Geometric.h"
+#include "Piece.h"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include <math.h>
 #include <algorithm>
 using namespace std;
@@ -89,4 +92,35 @@ bool geometric::onSegment(Point p, Point q, Point r)
 bool geometric::equal(double d, double e)
 {
 	return abs(d - e) < 1e-6;
+}
+
+int geometric::intersect(const Point & a1, const Point & b1, const Point & a2, const Point & b2)
+{
+	int o1 = orientation(a1, b1, a2);
+	int o2 = orientation(a1, b1, b2);
+	int o3 = orientation(a2, b2, a1);
+	int o4 = orientation(a2, b2, b1);
+	return 0;
+}
+
+bool geometric::check_polygon_intersect(const Piece & a, const Piece & b)
+{
+	//note: not 100% accurate in exchange for speed
+	//future update: may use clipper library
+	vector<cv::Point2i> a_vert, b_vert;
+
+	for (int i = 0; i < a.vertices.size(); i++)
+		a_vert.push_back(cv::Point2i(a.vertices[i].point.x, a.vertices[i].point.y));
+
+	for (int i = 0; i < b.vertices.size(); i++)
+		b_vert.push_back(cv::Point2i(b.vertices[i].point.x, b.vertices[i].point.y));
+	
+	for (int i = 0; i < a_vert.size(); i++)
+		if (cv::pointPolygonTest(b_vert, a_vert[i], false) > 0)
+			return true;
+
+	for (int i = 0; i < b_vert.size(); i++)
+		if (cv::pointPolygonTest(a_vert, b_vert[i], false) > 0)
+			return true;
+	return false;
 }

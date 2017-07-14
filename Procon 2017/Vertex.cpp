@@ -1,5 +1,9 @@
 #include "Vertex.h"
 #include "Piece.h"
+#include <algorithm>
+
+#define CANT_ROTATE -1
+#define INTERSECT -2
 
 Vertex::Vertex(const geometric::Point& point, Piece *parent, int id)
 {
@@ -20,21 +24,28 @@ vPair::vPair(Vertex * a, Vertex * b)
 	this->get_compatibility();
 }
 
-int try_get_cmp(Vertex& a, Vertex& _b, Vertex& a_)
+int try_get_cmp(Vertex& a, Vertex& b, Vertex& _b, Vertex& a_)
 {
 	geometric::Point
 		A = a.point,
 		_B = _b.point,
 		A_ = a_.point;
 
-	if (!_b.parent->rotate(geometric::compute_angle(A_, A, _B), A))
+	if (!b.parent->rotate(geometric::compute_angle(A_, A, _B), A))
+		return CANT_ROTATE;
+	if (geometric::check_polygon_intersect(*a.parent, *b.parent))
+		return INTERSECT;
+	if (!geometric::equal(a.angle + b.angle, 2 * PI)) return 0;
+
+	int cmp = 0;
+	Vertex *pa = &a, *pb = &b;
+	for (int i = 0; i < min(a.parent->vertices.size(), b.parent->vertices.size()); i++)
 	{
-		return -1;
+		if (pa->point == pb->point) cmp++;
+		pa = pa->prev();
+		pb = pb->next();
 	}
-	else
-	{
-		return 0;
-	}
+	return cmp;
 }
 
 void vPair::get_compatibility()
@@ -49,7 +60,7 @@ void vPair::get_compatibility()
 
 	tmp_piece_b.move(this->a->point - this->b->point);
 
-	compatibility = try_get_cmp(*a, *b->prev(), *a->next());
+	compatibility = try_get_cmp(*a, *b, *b->prev(), *a->next());
 }
 
 Vertex* Vertex::next()

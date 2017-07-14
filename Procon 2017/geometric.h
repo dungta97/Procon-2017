@@ -1,8 +1,12 @@
 #pragma once
 #define PI 3.14159265358979323846
+#define SOFT_INTERSECT 1
+#define HARD_INTERSECT 2
+#define COLLINEAR 0
 #include <iostream>
 using namespace std;
 
+class Piece;
 namespace geometric
 {
 	class Point
@@ -23,4 +27,6 @@ namespace geometric
 	double compute_angle(Point A, Point O, Point B);
 	bool onSegment(Point p, Point q, Point r);
 	bool equal(double d, double e);
+	int intersect(const Point& a1, const Point& b1, const Point& a2, const Point& b2);
+	bool check_polygon_intersect(const Piece& a, const Piece& b);
 }

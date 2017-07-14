@@ -4,25 +4,15 @@
 using namespace std;
 
 int main(void) {
-	State initial = readInput("input.txt");
+	State initial = readInput("test_input.txt");
 
-	/*for each (Piece piece in initial.pieces)
-	{
-		Vertex* v = &piece.vertices[0];
-		for (int i = 0; i < piece.vertices.size(); i++)
-		{
-			cout << v->point.x << " " << v->point.y << " " << v->id << endl;
-			v = v->next();
-		}
-		cout << endl;
-	}*/
-
-	vector<vPair> vpairs;
+	/*vector<vPair> vpairs;
 	initial.get_vPairs(vpairs);
-	cout << "count: " << vpairs.size();
+	cout << "count: " << vpairs.size() << endl;
 	for each (vPair vpair in vpairs)
 	{
 		cout << vpair.a->point.x << " " << vpair.a->point.y << " " << vpair.b->point.x << " " << vpair.b->point.y << " " << vpair.compatibility << endl;
-	}
+	}*/
+	cout << geometric::check_polygon_intersect(initial.pieces[0], initial.pieces[1]);
 	getchar();
 }
