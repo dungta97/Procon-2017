@@ -116,11 +116,11 @@ bool geometric::check_polygon_intersect(const Piece & a, const Piece & b)
 		b_vert.push_back(cv::Point2i(b.vertices[i].point.x, b.vertices[i].point.y));
 	
 	for (int i = 0; i < a_vert.size(); i++)
-		if (cv::pointPolygonTest(b_vert, a_vert[i], false) > 0)
+		if ((cv::pointPolygonTest(b_vert, a_vert[i], false) > 0) ^ b.is_frame)
 			return true;
 
 	for (int i = 0; i < b_vert.size(); i++)
-		if (cv::pointPolygonTest(a_vert, b_vert[i], false) > 0)
+		if ((cv::pointPolygonTest(a_vert, b_vert[i], false) > 0) ^ a.is_frame)
 			return true;
 	return false;
 }

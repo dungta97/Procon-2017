@@ -3,6 +3,7 @@
 Piece::Piece()
 {
 	this->exist = true;
+	this->is_frame = false;
 	child_1 = child_2 = nullptr;
 }
 

@@ -56,7 +56,11 @@ State readInput(char* fileName)
 			y = InputReader::read();
 			res.pieces[I].push(x, y);
 		}
-		if (I == N) reverse(res.pieces[I].vertices);	// Reverse the frame's vertices
+		if (I == N)
+		{
+			reverse(res.pieces[I].vertices);	// Reverse the frame's vertices
+			res.pieces[I].is_frame = true;
+		}
 		res.pieces[I].compute_angles();
 	}
 	return res;

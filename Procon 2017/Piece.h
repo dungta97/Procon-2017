@@ -8,6 +8,7 @@ class Piece
 public:
 	vector<Vertex> vertices;
 	bool exist;
+	bool is_frame;
 	Piece *child_1, *child_2;
 
 	Piece();
