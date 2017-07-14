@@ -62,7 +62,9 @@ void geometric::Point::print()
 int geometric::orientation(const Point& A, const Point& O, const Point& B)
 {
 	// result: < 0 if clockwise, > 0 if counter clockwise, == 0 if collinear.
-	return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+	int val = (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+	if (val == 0) return val;
+	return val / abs(val);
 }
 
 double geometric::compute_angle(Point A, Point O, Point B)
@@ -94,13 +96,20 @@ bool geometric::equal(double d, double e)
 	return abs(d - e) < 1e-6;
 }
 
-int geometric::intersect(const Point & a1, const Point & b1, const Point & a2, const Point & b2)
+bool geometric::intersect(const Point & a1, const Point & b1, const Point & a2, const Point & b2)
 {
 	int o1 = orientation(a1, b1, a2);
 	int o2 = orientation(a1, b1, b2);
 	int o3 = orientation(a2, b2, a1);
 	int o4 = orientation(a2, b2, b1);
-	return 0;
+	if (o1 != o2 && o3 != o4)
+		return true;
+	if (o1 == 0 && onSegment(a1, a2, b1)) return true;
+	if (o2 == 0 && onSegment(a1, b2, b1)) return true;
+	if (o3 == 0 && onSegment(a2, a1, b2)) return true;
+	if (o4 == 0 && onSegment(a2, b1, b2)) return true;
+
+	return false;
 }
 
 bool geometric::check_polygon_intersect(const Piece & a, const Piece & b)
