@@ -13,11 +13,7 @@ int main(void) {
 	{
 		cout << vpair.a->point.x << " " << vpair.a->point.y << " " << vpair.b->point.x << " " << vpair.b->point.y << " " << vpair.compatibility << endl;
 	}*/
-	geometric::Point 
-		a1(3, 2),
-		b1(5, 2),
-		a2(3, 3),
-		b2(0, 0);
-	cout << geometric::intersect(a1, b1, a2, b2);
+	cout << initial.pieces[0].rotate(1, geometric::Point(0, 0)) << endl;
+	initial.pieces[0].print();
 	getchar();
 }

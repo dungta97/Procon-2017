@@ -2,9 +2,6 @@
 #include "Piece.h"
 #include <algorithm>
 
-#define CANT_ROTATE -1
-#define INTERSECT -2
-
 Vertex::Vertex(const geometric::Point& point, Piece *parent, int id)
 {
 	this->point = point;
@@ -32,9 +29,9 @@ int try_get_cmp(Vertex& a, Vertex& b, Vertex& _b, Vertex& a_)
 		A_ = a_.point;
 
 	if (!b.parent->rotate(geometric::compute_angle(A_, A, _B), A))
-		return CANT_ROTATE;
+		return -1;
 	if (geometric::check_polygon_intersect(*a.parent, *b.parent))
-		return INTERSECT;
+		return -1;
 	if (!geometric::equal(a.angle + b.angle, 2 * PI)) return 0;
 
 	int cmp = 0;

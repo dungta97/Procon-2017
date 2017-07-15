@@ -32,11 +32,14 @@ void Piece::move(geometric::Point v)
 
 bool Piece::rotate(double angle, geometric::Point center)
 {
+	Piece tmp;
+	this->clone(tmp);
 	for (int i = 0; i < vertices.size(); i++)
 	{
-		if (!vertices[i].rotate(angle, center))
+		if (!tmp.vertices[i].rotate(angle, center))
 			return false;
 	}
+	*this = tmp;
 	return true;
 }
 
