@@ -11,7 +11,9 @@ int main(void) {
 	cout << "count: " << vpairs.size() << endl;
 	for each (vPair vpair in vpairs)
 	{
-		cout << vpair.a->point.x << " " << vpair.a->point.y << " " << vpair.b->point.x << " " << vpair.b->point.y << " " << vpair.compatibility << endl;
+		vpair.a->print();
+		vpair.b->print();
+		cout << vpair.compatibility << endl;
 		if (vpair.compatibility >= 0)
 			vpair.result.print();
 	}
