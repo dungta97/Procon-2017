@@ -7,9 +7,19 @@ Piece::Piece()
 	child_1 = child_2 = nullptr;
 }
 
+Piece::Piece(const Piece & other)
+{
+	*this = other;
+}
+
 void Piece::push(int x, int y)
 {
 	vertices.push_back(Vertex(geometric::Point(x, y), this, (int)vertices.size()));
+}
+
+void Piece::push(geometric::Point p)
+{
+	push(p.x, p.y);
 }
 
 void Piece::compute_angles()
@@ -32,8 +42,7 @@ void Piece::move(geometric::Point v)
 
 bool Piece::rotate(double angle, geometric::Point center)
 {
-	Piece tmp;
-	this->clone(tmp);
+	Piece tmp = *this;
 	for (int i = 0; i < vertices.size(); i++)
 	{
 		if (!tmp.vertices[i].rotate(angle, center))
@@ -43,7 +52,7 @@ bool Piece::rotate(double angle, geometric::Point center)
 	return true;
 }
 
-void Piece::print()
+void Piece::print() const
 {
 	for each (Vertex vertex in vertices)
 	{
@@ -52,11 +61,15 @@ void Piece::print()
 	}
 }
 
-void Piece::clone(Piece &newpiece)
+void Piece::operator=(const Piece& other)
 {
-	newpiece = *this;
-	for (int i = 0; i < newpiece.vertices.size(); i++)
+	this->vertices = other.vertices;
+	this->child_1 = other.child_1;
+	this->child_2 = other.child_2;
+	this->exist = other.exist;
+	this->is_frame = other.is_frame;
+	for (int i = 0; i < vertices.size(); i++)
 	{
-		newpiece.vertices[i].parent = &newpiece;
+		vertices[i].parent = this;
 	}
 }

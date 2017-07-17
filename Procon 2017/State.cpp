@@ -21,8 +21,8 @@ void State::get_vPairs(vector<vPair>& res)
 			for (int m = 0; m < pieces[i].vertices.size(); m ++)
 				for (int n = 0; n < pieces[j].vertices.size(); n++)
 				{
-					vPair tmp(&(pieces[i].vertices[m]), &(pieces[j].vertices[n]));
-					res.push_back(tmp);
+					res.push_back(vPair(&(pieces[i].vertices[m]), &(pieces[j].vertices[n])));
+					cout << "ok" << endl;
 				}
 		}
 }

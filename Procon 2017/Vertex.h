@@ -9,6 +9,7 @@ public:
 	Piece *parent;
 	int id;
 	double angle;
+
 	Vertex(const geometric::Point& point, Piece *parent, int id);
 	void compute_angle(const Vertex &before, const Vertex &after);
 	Vertex* next();
@@ -16,14 +17,4 @@ public:
 	void move(geometric::Point v);
 	bool rotate(double angle, geometric::Point center);
 	void print();
-};
-
-class vPair
-{
-public:
-	Vertex *a, *b;
-	int compatibility;
-	vPair(Vertex *a, Vertex *b);
-	Piece* merged_piece;
-	void get_compatibility();
 };

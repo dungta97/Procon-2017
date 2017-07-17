@@ -1,5 +1,5 @@
 #pragma once
-#include "Piece.h"
+#include "vPair.h"
 #include <vector>
 using namespace std;
 
