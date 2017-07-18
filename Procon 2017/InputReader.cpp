@@ -1,6 +1,7 @@
 #include "InputReader.h"
 
 queue<int> InputReader::input;
+int InputReader::N;
 
 void InputReader::getInputString(string str)
 {
@@ -44,7 +45,7 @@ State readInput(char* fileName)
 	string s;
 	getline(inp, s);
 	InputReader::getInputString(s);
-	int N = InputReader::read();
+	int N = InputReader::N = InputReader::read();
 	State res(N + 1);
 	for (int I = 0; I < N + 1; I++)
 	{

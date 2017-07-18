@@ -2,7 +2,10 @@
 #define PI 3.14159265358979323846
 #define COLLINEAR 0
 #include <iostream>
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 using namespace std;
+using namespace cv;
 
 class Piece;
 namespace geometric
@@ -27,4 +30,5 @@ namespace geometric
 	bool equal(double d, double e);
 	bool intersect(const Point& a1, const Point& b1, const Point& a2, const Point& b2);
 	bool check_polygon_intersect(const Piece& a, const Piece& b);
+	Mat drawPiece(Piece& p, int ratio);
 }

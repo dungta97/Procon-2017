@@ -5,6 +5,7 @@
 #include <math.h>
 #include <algorithm>
 using namespace std;
+using namespace cv;
 
 geometric::Point geometric::Point::operator+(const Point& other)
 {
@@ -143,4 +144,36 @@ bool geometric::check_polygon_intersect(const Piece & a, const Piece & b)
 				return true;
 
 	return false;
+}
+
+vector<cv::Point> toVectorPoint(vector<Vertex>& vertex, int ratio) {
+	vector<cv::Point> vtmp;
+	vtmp.clear();
+	for each (Vertex v in vertex)
+	{
+		vtmp.push_back(cv::Point(v.point.x*ratio, v.point.y*ratio));
+	}
+	return vtmp;
+}
+
+Mat geometric::drawPiece(Piece& p, int ratio) {
+	Mat res;
+	vector<cv::Point> vtmp;
+	vtmp.clear();
+	if (p.vertices.size() != 0) {
+		vtmp = toVectorPoint(p.vertices, ratio);
+		Rect bound = boundingRect(vtmp);
+		vector<vector<cv::Point>> a;
+		a.clear();
+		vector<cv::Point> pnt;
+		a.push_back(pnt);
+		for each (cv::Point point in vtmp)
+		{
+			a.at(0).push_back(cv::Point(point.x - bound.x, point.y - bound.y));
+		}
+		res = Mat(bound.height, bound.width, CV_8UC3, Scalar(255, 255, 255));
+		fillPoly(res, a, Scalar(0, 0, 255));
+		return res;
+	}
+	return Mat(10,10, CV_8UC3, Scalar(255, 255, 255));
 }

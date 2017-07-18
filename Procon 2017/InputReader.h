@@ -11,6 +11,7 @@ public:
 	static queue<int> input;
 	static void getInputString(string str);
 	static int read();
+	static int N;
 };
 
 State readInput(char* fileName);

@@ -1,10 +1,12 @@
 #include "vPair.h"
 #include <algorithm>
 
-vPair::vPair(Vertex * a, Vertex * b)
+vPair::vPair(Vertex * a, Vertex * b, int child_1, int child_2)
 {
 	this->a = a;
 	this->b = b;
+	this->result.child_1 = child_1;
+	this->result.child_2 = child_2;
 	this->result.is_frame = a->parent->is_frame || b->parent->is_frame;
 	get_compatibility();
 }
@@ -24,6 +26,7 @@ int try_get_cmp(Vertex& a, Vertex& b, Vertex& _b, Vertex& a_, Piece& result)
 		return -1;
 
 	int cmp = 0;
+	int count = 0;
 	Vertex *pa = &a, *pb = &b,
 		*first_a, *first_b, *last_a, *last_b;
 	first_a = pa->next();
@@ -48,7 +51,14 @@ int try_get_cmp(Vertex& a, Vertex& b, Vertex& _b, Vertex& a_, Piece& result)
 	{
 		if (pa->point == pb->point)
 		{
-			cmp++;
+			count++;
+			if ((pa->angle == PI / 2) || (pb->angle == PI / 2))
+				cmp += 2;
+			else
+				if ((pa->angle + pb->angle) == 2 * PI)
+					cmp += 5;
+				else
+					cmp += 1;
 			last_a = pa;
 			last_b = pb;
 			pa = pa->prev();
@@ -60,7 +70,7 @@ int try_get_cmp(Vertex& a, Vertex& b, Vertex& _b, Vertex& a_, Piece& result)
 	if (possible_duplicate)
 	{
 		if (a.parent->vertices.size() != b.parent->vertices.size()) return -1;
-		if (cmp != a.parent->vertices.size()) return -1;
+		if (count != a.parent->vertices.size()) return -1;
 	}
 	bool
 		a_perfect = last_a == first_a,
@@ -108,4 +118,9 @@ void vPair::get_compatibility()
 	tmp_piece_b.move(this->a->point - this->b->point);
 
 	compatibility = try_get_cmp(*a, *b, *b->prev(), *a->next(), result);
+}
+
+bool compare_func(vPair i, vPair j)
+{
+	return i.compatibility > j.compatibility;
 }
