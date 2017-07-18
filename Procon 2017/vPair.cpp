@@ -19,20 +19,26 @@ int try_get_cmp(Vertex& a, Vertex& b, Vertex& _b, Vertex& a_, Piece& result)
 	if (!b.parent->rotate(geometric::compute_angle(A_, A, _B), A))
 		if (!a.parent->rotate(geometric::compute_angle(_B, A, A_), A))
 			return -1;
+
 	if (geometric::check_polygon_intersect(*a.parent, *b.parent))
 		return -1;
 
-	int cmp = -1;
+	int cmp = 0;
 	Vertex *pa = &a, *pb = &b,
 		*first_a, *first_b, *last_a, *last_b;
 	first_a = pa->next();
 	first_b = pb->prev();
+	bool possible_duplicate = false;
 	if (pa->next()->point == pb->prev()->point)
 	{
 		pa = pa->next();
 		first_a = first_a->next();
 		pb = pb->prev();
-		if ((pa->angle + pb->angle) == 2 * PI) return -1;
+		if ((pa->angle + pb->angle) == 2 * PI)
+		{
+			possible_duplicate = true;
+			first_b = first_b->prev();
+		}
 		if ((pa->angle + pb->angle) == PI)
 			first_b = first_b->prev();
 	}
@@ -51,22 +57,40 @@ int try_get_cmp(Vertex& a, Vertex& b, Vertex& _b, Vertex& a_, Piece& result)
 		else
 			break;
 	}
+	if (possible_duplicate)
+	{
+		if (a.parent->vertices.size() != b.parent->vertices.size()) return -1;
+		if (cmp != a.parent->vertices.size()) return -1;
+	}
+	bool
+		a_perfect = last_a == first_a,
+		b_perfect = last_b == first_b;
+
 	if (((last_a->angle + last_b->angle) == PI) || ((last_a->angle + last_b->angle) == 2 * PI))
 		last_b = last_b->next();
+	else b_perfect = false;
+
 	last_a = last_a->prev();
 
-	while (first_a != last_a)
+	if (!a_perfect)
 	{
-		result.push(first_a->point);
-		first_a = first_a->next();
+		while (first_a != last_a)
+		{
+			result.push(first_a->point);
+			first_a = first_a->next();
+		}
+		result.push(last_a->point);
 	}
-	result.push(last_a->point);
-	while (last_b != first_b)
+
+	if (!b_perfect)
 	{
-		result.push(last_b->point);
-		last_b = last_b->next();
+		while (last_b != first_b)
+		{
+			result.push(last_b->point);
+			last_b = last_b->next();
+		}
+		result.push(first_b->point);
 	}
-	result.push(first_b->point);
 	result.compute_angles();
 	return cmp;
 }

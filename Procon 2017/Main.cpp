@@ -14,8 +14,7 @@ int main(void) {
 		vpair.a->print();
 		vpair.b->print();
 		cout << vpair.compatibility << endl;
-		if (vpair.compatibility >= 0)
-			vpair.result.print();
+		vpair.result.print();
 	}
 	getchar();
 }
