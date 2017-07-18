@@ -29,19 +29,19 @@ void State::get_vPairs(vector<vPair>& res)
 				for (int n = 0; n < pieces[j].vertices.size(); n++)
 				{
 					push_vpair(res, &(pieces[i].vertices[m]), &(pieces[j].vertices[n]));
-					/*cout << i << ' ' << j << ' ' << m << ' ' << n << endl;
-					Piece *to_flip;
+
 					if (!pieces[i].is_frame)
-						to_flip = &pieces[i];
+					{
+						Piece flip = pieces[i].flip();
+						push_vpair(res, &flip.vertices[flip.vertices.size() - 1 - m], &(pieces[j].vertices[n]));
+						res.back().result.child_1 = &pieces[i];
+					}
 					else
-						to_flip = &pieces[j];
-					to_flip->flip();
-					cout << "flip done" << endl;
-					pieces[i].print();
-					cout << endl;
-					pieces[j].print();
-					push_vpair(res, &(pieces[i].vertices[m]), &(pieces[j].vertices[n]));
-					to_flip->flip();*/
+					{
+						Piece flip = pieces[j].flip();
+						push_vpair(res, &(pieces[i].vertices[m]), &flip.vertices[flip.vertices.size() - 1 - n]);
+						res.back().result.child_2 = &pieces[j];
+					}
 				}
 		}
 }

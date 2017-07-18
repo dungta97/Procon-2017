@@ -73,3 +73,14 @@ void Piece::operator=(const Piece& other)
 		vertices[i].parent = this;
 	}
 }
+
+Piece Piece::flip()
+{
+	Piece res;
+	for (int i = vertices.size() - 1; i >= 0; i--)
+	{
+		res.push(-vertices[i].point.x, vertices[i].point.y);
+	}
+	res.compute_angles();
+	return res;
+}
