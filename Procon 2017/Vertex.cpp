@@ -13,12 +13,12 @@ void Vertex::compute_angle(const Vertex &before, const Vertex &after)
 	angle = geometric::compute_angle(before.point, this->point, after.point);
 }
 
-Vertex* Vertex::next()
+Vertex* Vertex::next() const
 {
 	return &(parent->vertices[(id + 1) % parent->vertices.size()]);
 }
 
-Vertex* Vertex::prev()
+Vertex* Vertex::prev() const
 {
 	return &(parent->vertices[(id - 1 + parent->vertices.size()) % parent->vertices.size()]);
 }

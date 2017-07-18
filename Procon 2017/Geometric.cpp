@@ -102,12 +102,10 @@ bool geometric::intersect(const Point & a1, const Point & b1, const Point & a2, 
 	int o2 = orientation(a1, b1, b2);
 	int o3 = orientation(a2, b2, a1);
 	int o4 = orientation(a2, b2, b1);
+	if ((o1 == 0) || (o2 == 0) || (o3 == 0) || (o4 == 0))
+		return false;
 	if (o1 != o2 && o3 != o4)
 		return true;
-	if (o1 == 0 && onSegment(a1, a2, b1)) return true;
-	if (o2 == 0 && onSegment(a1, b2, b1)) return true;
-	if (o3 == 0 && onSegment(a2, a1, b2)) return true;
-	if (o4 == 0 && onSegment(a2, b1, b2)) return true;
 
 	return false;
 }
@@ -138,5 +136,11 @@ bool geometric::check_polygon_intersect(const Piece & a, const Piece & b)
 		if ((test > 0) ^ a.is_frame)
 			return true;
 	}
+
+	for (int i = 0; i < a.vertices.size(); i++)
+		for (int j = 0; j < b.vertices.size(); j++)
+			if (intersect(a.vertices[i].point, a.vertices[i].next()->point, b.vertices[j].point, b.vertices[j].next()->point))
+				return true;
+
 	return false;
 }
