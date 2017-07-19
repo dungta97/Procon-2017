@@ -1,9 +1,10 @@
 ﻿#include <iostream>
 #include "State.h"
 #include "InputReader.h"
+#include "QRScan.h"
 using namespace std;
 
-State state = readInput("input.txt");
+State state;
 
 void show_me(int root)
 {
@@ -36,6 +37,7 @@ void trace_result()
 
 void backtrack(int depth)
 {
+	cout << depth << endl;
 	if (depth == InputReader::N)
 		trace_result();
 	vector<vPair> vpairs;
@@ -57,6 +59,24 @@ void backtrack(int depth)
 }
 
 int main(void) {
+	VideoCapture cap;
+	cap.open("http://192.168.100.4:8080/video");
+	vector<String> vs=ScanQR(cap);
+	cout << vs[0] << endl;
+	String res = "";
+	int idx = -1,n=0;
+	for (int i = 0;i < vs.size();i++) {
+		String tmp=vs[i].substr(0, vs[i].find_first_of(":"));
+		int a = stoi(tmp);
+		n += a;
+		if (a != std::count(vs[i].begin(), vs[i].end(), ':')) idx = i;
+		else {
+			res += vs[i].substr(vs[i].find_first_of(":"), vs[i].length());
+		}
+	}
+	res += vs[idx].substr(vs[idx].find_first_of(":"), vs[idx].length());
+	res = to_string(n) + res;
+	state = readInput(res);
 	backtrack(0);
 	getchar();
 }

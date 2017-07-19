@@ -39,7 +39,7 @@ void reverse(vector<Vertex> &vertices)
 	vertices = rev;
 }
 
-State readInput(char* s)
+State readInput(String s)
 {
 	/*ifstream inp(fileName);
 	string s;

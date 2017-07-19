@@ -14,4 +14,4 @@ public:
 	static int N;
 };
 
-State readInput(char* fileName);
+State readInput(String fileName);

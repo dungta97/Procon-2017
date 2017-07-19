@@ -7,7 +7,8 @@ void State::push(Piece &piece)
 	pieces.push_back(piece);
 	pieces.back().id = pieces.size() - 1;
 }
-
+State::State()
+{}
 State::State(int N)
 {
 	pieces = vector<Piece>(N);
