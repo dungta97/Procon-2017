@@ -39,11 +39,11 @@ void reverse(vector<Vertex> &vertices)
 	vertices = rev;
 }
 
-State readInput(String s)
+State readInput(String fileName)
 {
-	/*ifstream inp(fileName);
+	ifstream inp(fileName);
 	string s;
-	getline(inp, s);*/
+	getline(inp, s);
 	InputReader::getInputString(s);
 	int N = InputReader::N = InputReader::read();
 	State res(N + 1);
